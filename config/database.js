@@ -6,6 +6,6 @@
       benchmark: true,
       logQueryParameters: true,
       typeValidation: true,
-      logging: true,
+      logging: console.log,
     },
   };

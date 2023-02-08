@@ -1,3 +1,21 @@
+const express = require("express");
 require("dotenv").config();
-const {DB_PATH} = process.env;
-console.log(DB_PATH);
+const {Score} = require("./db/models");
+const {PORT} = process.env;
+
+// Initialization of Express
+const app = express();
+
+// Apply JSON middleware
+app.use(express.json());
+
+// Get all scores
+app.get("/scores", async (req,res) => {
+  const scores = await Score.findAll();
+  res.json(scores);
+});
+
+// Listen on port
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
