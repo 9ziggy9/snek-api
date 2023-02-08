@@ -4,6 +4,7 @@ All filenames are taken relative to project root directory (i.e. location of .gi
 *** Install sequelize and sqlite3 drivers
 #+begin_src console
 npm install --save sequelize
+npm install --save-dev sequelize-cli
 npm install --save sqlite3
 #+end_src
 *** Install express and nodemon
@@ -27,18 +28,45 @@ DB_PATH=./db/main.db
 require("dotenv").config();
 const {DB_PATH} = process.env;
 #+end_src
-
-
-
 ** Sequelize configuration
-/./app.js/
+*** Bootstrapping project
+**** Create a .sequelizerc config file
+//.sequelizerc/
+#+BEGIN_SRC js
+const path = require("path");
+module.exports = {
+  config: path.resolve("config", "database.js"),
+  "models-path": path.resolve("db", "models"),
+  "seeders-path": path.resolve("db", "seeders"),
+  "migrations-path": path.resolve("db", "migrations"),
+};
+#+END_SRC 
+**** Bootstrap with sequelize-cli
+#+BEGIN_SRC console
+npx sequelize-cli init
+#+END_SRC 
+**** Defining configuration settings
+#+BEGIN_SRC js
+  module.exports = {
+    development: {
+      storage: process.env.DB_PATH,
+      dialect: "sqlite",
+      seederStorage: "sequelize",
+      benchmark: true,
+      logQueryParameters: true,
+      typeValidation: true,
+      logging: true,
+    },
+  };
+#+END_SRC 
 *** Initializing sequelize interface
+/./app.js/
 #+begin_src js
 const {Sequelize} = require("sequelize");
 
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  dialect: `${DB_PATH}`
+  storage: `${DB_PATH}`
 });
 #+end_src js
 *** Testing Connection (remove after)
