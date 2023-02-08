@@ -16,8 +16,8 @@ npm install dotenv
 #+end_src
 *** Configuration
 ./app.js
+#+export_file_name: ./app.js
 #+begin_src js
-#export_file_name: ./app.js
 require("dotenv").config();
 const {DB_PATH} = process.env;
 #+end_src
