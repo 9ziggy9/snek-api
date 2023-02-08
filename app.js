@@ -8,3 +8,10 @@ const sequelize = new Sequelize({
   dialect: "sqlite",
   dialect: `${DB_PATH}`
 });
+
+try {
+  sequelize.authenticate()
+    .then(() => "Connection successful!");
+} catch (e) {
+  console.error("Could not connect!", e);
+}

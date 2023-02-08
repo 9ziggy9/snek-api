@@ -1,24 +1,52 @@
 * Snek API Guide
 All filenames are taken relative to project root directory (i.e. location of .git)
-** Install sequelize and sqlite3 drivers
+** Installing dependencies
+*** Install sequelize and sqlite3 drivers
 #+begin_src console
 npm install --save sequelize
 npm install --save sqlite3
 #+end_src
-** Install express and nodemon
+*** Install express and nodemon
 #+begin_src console
 npm install express
 npm install nodemon
 #+end_src
-** Install and configure dotenv to take env vars
-*** Installation
+*** Install and configure dotenv to take env vars
+**** Installation
 #+begin_src console
 npm install dotenv
 #+end_src
-*** Configuration
+**** Defining environment vars
+/./env/
+#+begin_src sh
+DB_PATH=./db/main.db
+#+end_src sh
+**** Configuration
 /./app.js/
 #+begin_src js
 require("dotenv").config();
 const {DB_PATH} = process.env;
 #+end_src
 
+
+
+** Sequelize configuration
+/./app.js/
+*** Initializing sequelize interface
+#+begin_src js
+const {Sequelize} = require("sequelize");
+
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  dialect: `${DB_PATH}`
+});
+#+end_src js
+*** Testing Connection (remove after)
+#+begin_src js
+try {
+  sequelize.authenticate()
+    .then(() => "Connection successful!");
+} catch (e) {
+  console.error("Could not connect!", e);
+}
+#+end_src js
