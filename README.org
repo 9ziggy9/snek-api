@@ -1,1 +1,11 @@
 * Snek backend
+** Install sequelize and sqlite3 drivers
+#+begin_src console
+npm install --save sequelize
+npm install --save sqlite3
+#+end_src
+** Install express and nodemon
+#+begin_src console
+npm install express
+npm install nodemon
+#+end_src
