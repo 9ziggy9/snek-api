@@ -10,6 +10,12 @@ const app = express();
 app.use(express.json());
 
 // Get all scores
+app.get("/scores/:id", async (req,res) => {
+  const {id} = req.params;
+  const score = await Score.findByPk(id);
+  res.json(score);
+});
+
 app.get("/scores", async (req,res) => {
   const scores = await Score.findAll();
   res.json(scores);
