@@ -1,26 +1,28 @@
 * Snek API Guide
 All filenames are taken relative to project root directory (i.e. location of .git)
 ** Installing dependencies
+-D flag indicates development only dependency
 *** Install sequelize and sqlite3 drivers
 #+begin_src console
-npm install --save sequelize
-npm install --save-dev sequelize-cli
-npm install --save sqlite3
+npm install sequelize
+npm install sequelize-cli
+npm install -D sqlite3
 #+end_src
 *** Install express and nodemon
 #+begin_src console
 npm install express
-npm install nodemon
+npm install -D nodemon
 #+end_src
 *** Install and configure dotenv to take env vars
 **** Installation
 #+begin_src console
 npm install dotenv
+npm install -D dotenv-cli
 #+end_src
 **** Defining environment vars
 /./env/
 #+begin_src sh
-DB_PATH=./db/main.db
+DB_PATH=db/dev.db
 #+end_src sh
 **** Configuration
 /./app.js/

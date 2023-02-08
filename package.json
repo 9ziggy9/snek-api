@@ -1,7 +1,7 @@
 {
   "name": "snek-api",
   "version": "1.0.0",
-  "description": "* Snek API Guide All filenames are taken relative to project root directory (i.e. location of .git) ** Installing dependencies *** Install sequelize and sqlite3 drivers #+begin_src console npm install --save sequelize npm install --save-dev sequelize-cli npm install --save sqlite3 #+end_src *** Install express and nodemon #+begin_src console npm install express npm install nodemon #+end_src *** Install and configure dotenv to take env vars **** Installation #+begin_src console npm install dotenv #+end_src **** Defining environment vars /./env/ #+begin_src sh DB_PATH=./db/main.db #+end_src sh **** Configuration /./app.js/ #+begin_src js require(\"dotenv\").config(); const {DB_PATH} = process.env; #+end_src ** Sequelize configuration *** Bootstrapping project **** Create a .sequelizerc config file //.sequelizerc/ #+BEGIN_SRC js const path = require(\"path\"); module.exports = {   config: path.resolve(\"config\", \"database.js\"),   \"models-path\": path.resolve(\"db\", \"models\"),   \"seeders-path\": path.resolve(\"db\", \"seeders\"),   \"migrations-path\": path.resolve(\"db\", \"migrations\"), }; #+END_SRC  **** Bootstrap with sequelize-cli #+BEGIN_SRC console npx sequelize-cli init #+END_SRC  **** Defining configuration settings #+BEGIN_SRC js   module.exports = {     development: {       storage: process.env.DB_PATH,       dialect: \"sqlite\",       seederStorage: \"sequelize\",       benchmark: true,       logQueryParameters: true,       typeValidation: true,       logging: true,     },   }; #+END_SRC  *** Initializing sequelize interface /./app.js/ #+begin_src js const {Sequelize} = require(\"sequelize\");",
+  "description": "* Snek API Guide All filenames are taken relative to project root directory (i.e. location of .git) ** Installing dependencies -D flag indicates development only dependency *** Install sequelize and sqlite3 drivers #+begin_src console npm install sequelize npm install sequelize-cli npm install -D sqlite3 #+end_src *** Install express and nodemon #+begin_src console npm install express npm install nodemon #+end_src *** Install and configure dotenv to take env vars **** Installation #+begin_src console npm install dotenv npm install -D dotenv-cli #+end_src **** Defining environment vars /./env/ #+begin_src sh DB_PATH=db/dev.db #+end_src sh **** Configuration /./app.js/ #+begin_src js require(\"dotenv\").config(); const {DB_PATH} = process.env; #+end_src ** Sequelize configuration *** Bootstrapping project **** Create a .sequelizerc config file //.sequelizerc/ #+BEGIN_SRC js const path = require(\"path\"); module.exports = {   config: path.resolve(\"config\", \"database.js\"),   \"models-path\": path.resolve(\"db\", \"models\"),   \"seeders-path\": path.resolve(\"db\", \"seeders\"),   \"migrations-path\": path.resolve(\"db\", \"migrations\"), }; #+END_SRC  **** Bootstrap with sequelize-cli #+BEGIN_SRC console npx sequelize-cli init #+END_SRC  **** Defining configuration settings #+BEGIN_SRC js   module.exports = {     development: {       storage: process.env.DB_PATH,       dialect: \"sqlite\",       seederStorage: \"sequelize\",       benchmark: true,       logQueryParameters: true,       typeValidation: true,       logging: true,     },   }; #+END_SRC  *** Initializing sequelize interface /./app.js/ #+begin_src js const {Sequelize} = require(\"sequelize\");",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,9 +20,12 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "nodemon": "^2.0.20",
     "sequelize": "^6.28.0",
-    "sequelize-cli": "^6.6.0",
+    "sequelize-cli": "^6.6.0"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.0.0",
+    "nodemon": "^2.0.20",
     "sqlite3": "^5.1.4"
   }
 }
