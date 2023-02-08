@@ -1,4 +1,5 @@
 * Snek API Guide
+All filenames are taken relative to project root directory (i.e. location of .git)
 ** Install sequelize and sqlite3 drivers
 #+begin_src console
 npm install --save sequelize
