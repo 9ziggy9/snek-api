@@ -66,7 +66,18 @@ The following should run without error at this point and create a blank dev.db f
 #+BEGIN_SRC console
 npx dotenv sequelize db:migrate
 #+END_SRC
-** Models and Migrations
+Undo all migrations so we're starting clean.
+#+BEGIN_SRC console
+npx dotenv sequelize db:migrate:undo:all
+#+END_SRC
+** Models and migrations
+*** Generating the Score model
+#+BEGIN_SRC console
+npx sequelize model:generate --name Score --attributes player:string,score:integer
+#+END_SRC
+After adding some simple validation and limitations on string length, we reflect this change in the migration file up method and perform our migration.
+*** Defining migration interface logic
+** Integrating Express with ORM
 *** Initializing sequelize interface
 /./app.js/
 #+begin_src js
