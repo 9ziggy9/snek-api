@@ -1,4 +1,4 @@
-* Snek backend
+* Snek API Guide
 ** Install sequelize and sqlite3 drivers
 #+begin_src console
 npm install --save sequelize
@@ -9,3 +9,14 @@ npm install --save sqlite3
 npm install express
 npm install nodemon
 #+end_src
+** Install and configure dotenv to take env vars
+*** Installation
+#+begin_src console
+npm install dotenv
+#+end_src
+*** Configuration
+#+begin_src js :comments ./app.js
+require("dotenv").config();
+const {DB_PATH} = process.env;
+#+end_src
+
