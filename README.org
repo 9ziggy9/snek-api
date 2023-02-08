@@ -15,8 +15,7 @@ npm install nodemon
 npm install dotenv
 #+end_src
 *** Configuration
-#+TITLE: ./app.js
-#+begin_src js
+#+begin_src js :tangle "./app.js"
 require("dotenv").config();
 const {DB_PATH} = process.env;
 #+end_src
