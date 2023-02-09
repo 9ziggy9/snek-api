@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-const {Score} = require("./db/models");
+const {Score,Player} = require("./db/models");
 const {PORT} = process.env;
 
 // Initialization of Express
@@ -17,7 +17,12 @@ app.get("/scores/:id", async (req,res) => {
 });
 
 app.get("/scores", async (req,res) => {
-  const scores = await Score.findAll();
+  const scores = await Player.findAll({
+    include: [{
+      model: Score
+    }],
+    attributes: ["name"],
+  });
   res.json(scores);
 });
 
