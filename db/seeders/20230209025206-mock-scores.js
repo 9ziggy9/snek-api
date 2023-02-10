@@ -5,7 +5,7 @@
 const randoScores = (num) => [...Array(num)]
       .map(row => ({
 	playerId: Math.floor(Math.random() * 20) + 1,
-	score: Math.floor(Math.random() * 1250) + 15,
+	score: Math.floor(Math.random() * 30) + 15,
       }));
 
 module.exports = {
